@@ -1,0 +1,134 @@
+﻿@using Microsoft.Extensions.Options
+@inject IOptions<StripeSettings> Stripe
+@model Payment
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="payment py-5">
+    <div class="container">
+        <div class="row">
+            <div class="payment-wrapper d-flex gap-5 flex-column-reverse flex-md-row">
+                <!-- left -->
+                <div class="pay-left col-12 col-md-6 col-lg-8">
+                    <div class="pay-form-header d-flex flex-md-column flex-lg-row justify-content-between  align-items-center pt-4 gap-5">
+                        <div class="d-flex justify-content-center  align-items-center"><h1 class="pay-title fw-bold fs-1">Payment</h1></div>
+                        <div class="img-containter d-flex align-items-center justify-content-between">
+                            <div class="payment-method d-flex align-items-center justify-content-center">
+                                <img src="/img/master-card.png" alt="img" class="img-fluid payment-method-item">
+                            </div>
+                            <div class="payment-method d-flex align-items-center justify-content-center">
+                                <img src="/img/visa.png" alt="img" class="img-fluid payment-method-item">
+                            </div>
+                            <div class="payment-method d-flex align-items-center justify-content-center">
+                                <img src="/img/apay.png" alt="img" class="img-fluid payment-method-item">
+                            </div>
+                            <div class="payment-method d-flex align-items-center justify-content-center">
+                                <img src="/img/gpay.png" alt="img" class="img-fluid payment-method-item">
+                            </div>
+                        </div>
+                    </div>
+
+                    <form class="payment" method="post">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="full-name">
+                                    <label for="full-name" class="payment-form-label">Full Name</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="address">
+                                    <label for="address" class="payment-form-label required">Address</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="card-number" asp-for="AccountNum">
+                                    <label for="card-number" class="payment-form-label required" >Card Number</label>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="phone-number">
+                                    <label for="phone-number" class="payment-form-label required">Phone Number</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="date" placeholder=" " class="payment-form-control" id="card-expiry" asp-for="Expiry">
+                                    <label for="card-expiry" class="payment-form-label required">Card Expiry</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="card-cvc" asp-for="CVV">
+                                    <label for="card-cvc" class="payment-form-label required">Card CVC</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="payment-form mt-3 mt-md-5">
+                                    <input type="text" placeholder=" " class="payment-form-control" id="card-name" asp-for="Provider">
+                                    <label for="card-name" class="payment-form-label required" >Name On Card</label>
+                                </div>
+                            </div>
+                            <div class="check mt-3 ms-1 d-flex align-items-center justify-content-center">
+                                <input type="checkbox" name="check-value" id="pay-check" class="me-2 d-block">
+                                <label for="pay-check" class="d-block fs-5 fw-bold"> Cash On Delivery</label>
+                            </div>
+                            <button type="submit" class="pay-submit-btn col-12 col-md-8 mx-auto mt-5" asp-action="SavePayment" >Order Now</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- right -->
+                <div class="pay-right col-12 col-md-6 col-lg-4">
+                    <div class="pay-header">
+                        <div class="pay-header-icon d-flex align-items-center justify-content-center mb-4 text-light"><i class="fa-solid fa-bolt"></i></div>
+                        <div class="pay-header-title fw-bold fs-4 text-light mb-2">Your Order</div>
+                    </div>
+                    <div class="pay-body-container">
+                        <div class="pay-body d-flex flex-column">
+                            <div class="pay-body-header d-flex align-items-center gap-4 justify-content-center mb-3 mt-md-5">
+                                <div class="order-icon d-flex align-items-center justify-content-center text-white">
+                                    <i class="fa-solid fa-receipt"></i>
+                                </div>
+                                <h2 class="text-center">Order Details</h2>
+                            </div>
+                            <div class="pay-content d-flex flex-column">
+                                <div class="pay-content-header d-flex align-items-center justify-content-between mb-3">
+                                    <h4 class="">Products</h4>
+                                    <h4 class="">Sub Total</h4>
+                                </div>
+                                <!-- add items here -->
+                                    <div class="pay-items mb-2">
+                                @foreach (var item in ViewBag.Cart)
+                                {
+                                        <!-- the item -->
+                                    <div class="item d-flex align-items-center justify-content-between mb-3">
+                                            <h5 class="item-name">@item.Product.Name</h5>
+                                            <h5 class="item-price me-2">$@item.Product.Price</h5>
+                                    </div>
+                                }
+                                </div>
+                                <div class="pay-sub-total d-flex align-items-center justify-content-between mb-2 pt-2">
+                                    <h5>Sub Total : </h5>
+                                    <h5 class="items-sub-total">$@ViewBag.Total</h5>
+                                </div>
+                                <div class="pay-discount d-flex align-items-center justify-content-between mb-4 pb-2">
+                                    <h5>Discount :</h5>
+                                    <h5 class="items-discount">$0</h5>
+                                </div>
+                                <div class="pay-final-total d-flex align-items-center justify-content-between">
+                                    <h4>Total : </h4>
+                                    <h4 class="final-total">$@ViewBag.Total</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end payment -->

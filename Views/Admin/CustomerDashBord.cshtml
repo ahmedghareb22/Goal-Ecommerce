@@ -1,0 +1,49 @@
+﻿@model List<CustomerViewModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="dashboard dash-customers">
+    <div class="container-fluid">
+        <div class="row title mt-3 mb-5 ms-2">
+            <div class="col-12 d-flex justify-content-between">
+                <h2 class="title text-uppercase">customers</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-head  position-relative mx-3 mx-md-5">
+                        <div class="card-head-content text-center pt-4 pb-3">
+                            <h5 class="text-uppercase fw-bold text-light">all customers</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table">
+                            <table class="w-100">
+                                <thead>
+                                    <tr>
+                                        <td class="fw-bold text-black-50 text-uppercase">name</td>
+                                        <td class="fw-bold text-black-50 text-uppercase text-center">join date</td>
+                                        <td class="fw-bold text-black-50 text-uppercase text-end">status</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    @if (Model != null)
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr class="">
+                                                <td class="text-capitalize">@item.Name</td>
+                                                <td class="text-center">@item.Date</td>
+                                                <td class="text-end text-capitalize"><span class="statue online p-3 badge">online</span></td>
+                                            </tr>
+                                        }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

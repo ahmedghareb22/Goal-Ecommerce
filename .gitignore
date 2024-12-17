@@ -1,0 +1,14 @@
+wwwroot/css/all.min.css
+wwwroot/css/bootstrap.min.css
+wwwroot/css/bootstrap.min.css.map
+wwwroot/css/normalize.css
+wwwroot/css/swiper-bundle.min.css
+.vs/
+bin/
+obj/
+wwwroot/js/bootstrap.min.js
+wwwroot/js/bootstrap.bundle.min.js.map
+wwwroot/js/bootstrap.min.js
+wwwroot/js/swiper-bundle.min.js
+lib/
+webfonts/

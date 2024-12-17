@@ -1,0 +1,133 @@
+﻿@using System.Security.Claims;
+
+@{
+    var userId = User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal</title>
+    <!-- link for title icon -->
+    <link rel="icon" href="/img/title.jpg" type="image/jpg">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/css/all.min.css">
+    <!-- normalization   -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+ <!-- swiper css -->
+        <link rel="stylesheet" href="/css/swiper-bundle.min.css">
+    <!-- google font -->
+    <!-- open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- metal mania -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- css file -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/template.css">
+</head>
+<body>
+
+    <!-- *******************************************************************header -->
+    <div class="template">
+    <partial name="_Nav" />
+    </div>
+
+            @RenderBody()
+
+    <partial name="_Footer" />
+    
+  <partial name="_Cart"/>
+
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/js/template.js"></script>
+    <script src="/js/all.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script>
+        
+        function AddToCart(ProductId) {
+            $.ajax({
+                url: "/Cart/AddToCart?productId=" + ProductId,
+                success: function (result) {
+                    GetCart();
+                }
+            });
+        }
+        
+            function GetCart() {
+                // Reference the cart container
+                var cart = document.getElementById("Cart");
+                if (!cart) {
+                    console.error("Cart container with ID 'Cart' not found!");
+                    return;
+                }
+                var Total = document.getElementById("total");
+                var i = 0;
+                cart.innerHTML = ""; // Clear the cart content before populating
+                Total.innerHTML = "";
+                // AJAX request to fetch cart data
+                $.ajax({
+                    url: "/Cart/GetCart",
+                    dataType: "json",
+                    success: function (result) {
+
+                    if (result) {
+                            // Loop through cart items and populate the cart
+                            for (let item of result.items) {
+                                let product = item.product; // Assuming item.Product is an object
+                                i += product.price * item.quntity;
+                                // Dynamically generate HTML for each cart item
+                                let itemHTML = `
+                                <div class="item">
+                                    <div class="image">
+                                                <img src="/img/${product.imgs[0].name}" alt="${product.imgs[0].name}" class="img-fluid">
+                                    </div>
+                                    <h5 class="title">${product.name}</h5>
+                                    <span class="price">$${product.price}</span>
+                                    <div class="quantity">
+                                                                        <span class="minus"><i class="fa-solid fa-minus" onclick="changeQuantity(${item.id},-1,${result.customerId})"></i></span>
+                                        <span>${item.quntity}</span>
+                                                                                <span class="plus"><i class="fa-solid fa-plus" onclick="changeQuantity(${item.id},1,${result.customerId})"></i></span>
+                                    </div>
+                                </div>
+                            `;
+                               
+                                // Append the generated HTML to the cart container
+                                cart.innerHTML += itemHTML;
+                            }
+                        let totalHTML = `Total:
+                <span>$${i}</span>`;
+                        Total.innerHTML += totalHTML;
+                        } else {
+                            // Display a message if the cart is empty
+                            cart.innerHTML = "<p>Your cart is empty.</p>";
+                        }
+                    }
+                   
+                });
+            }
+        function changeQuantity(itemid, amount) {
+            $.ajax({
+                url: "/Cart/changeQuantity?itemid=" + itemid + "&amount=" + amount,
+                success: function (result) {
+                    GetCart();
+                }
+                });
+        }
+
+
+    </script>
+
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

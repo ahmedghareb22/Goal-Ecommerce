@@ -1,0 +1,53 @@
+﻿@model LoginViewModel
+
+<!-- login box-->
+<div class="login-box active row m-0 ">
+    <!-- login image -->
+    <div class="login-image col-lg-8 col-6 d-none d-md-block">
+        <h1 class="text-uppercase text-white mt-3">goal</h1>
+    </div>
+
+    <!-- login -->
+    <div class="login col-12 col-lg-4 col-md-6 ps-3 pe-3 pt-4 d-flex flex-column justify-content-center align-items-center">
+        <img src="/img/logo.png" alt="logo" class="logo img-fluid ">
+        <h2 class="text-capitalize mb-5">login</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <!-- login form -->
+        <form class="w-75" method="post" asp-action="SaveLogin">
+            <div class="row">
+                <div class="mb-4">
+                    <!-- email -->
+                    <input id="login-email" class="text-capitalize w-100" placeholder="User Name" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-1">
+                    <!-- password -->
+                    <input type="password" id="login-password" class="text-capitalize w-100" placeholder="Password" asp-for="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-5 ">
+                    <!-- checkbox -->
+
+                    <input type="checkbox" id="checkbox" class="text-capitalize" asp-for="RememberMe">
+                    <label for="checkbox" class="text-capitalize">Remember Me</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="mb-3">
+                    <!-- login-btn -->
+                    <button type="submit" class="login-btn btnn w-100 py-2 rounded-2 text-white">Login</button>
+                </div>
+            </div>
+
+        </form>
+        <p class="text-muted">don't have an account? <a href="#" id="register-link" class="login-link link text-capitalize" onclick="toggleLogin()">register</a></p>
+    </div>
+</div>

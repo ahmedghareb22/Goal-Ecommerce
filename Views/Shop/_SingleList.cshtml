@@ -1,0 +1,35 @@
+﻿@model ICollection<Product>
+<div class="more-products slide-container swiper px-5 mt-5">
+    <div class="slide-content mx-2 my-0 mx-md-5 px-3">
+
+
+        <!-- add here -->
+        <div class="card-wrapper swiper-wrapper">
+            @foreach (var item in Model)
+            {
+                <div class="card swiper-slide">
+                    <div class="image d-flex align-items-center justify-content-center">
+
+                      <a asp-route-Id="@item.Id" asp-action="Single" asp-controller="Shop">
+                   
+                        <img src="/img/@item.Imgs.ToList()[0].Name" class="img-fluid" alt="img">
+                    
+                    </a>
+                    </div>
+                    <div class="card-body d-flex flex-column align-items-center">
+                    <h3 class="card-title text-center">@item.Name</h3>
+                    <h2 class="card-price text-center mt-3 mb-2">$@item.Price</h2>
+                    <a onclick="AddToCart(@item.Id)" class="btn btn-primary">Add To Cart</a>
+                </div>
+            </div>
+            }
+        </div>
+
+
+
+        <div class="swiper-button-next swiper-nav-btn d-none d-md-block"></div>
+        <div class="swiper-button-prev swiper-nav-btn d-none d-md-block"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+

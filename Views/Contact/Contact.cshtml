@@ -1,0 +1,136 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<!-- start contact -->
+<div class="contact py-5 my-5">
+    <div class="container py-5 px-5">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12 col-6">
+                        <h1 class="text-uppercase mb-5 text-center text-md-start">Contact Us</h1>
+                        <form method="post" class="add product mb-5" asp-action="SaveContact">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="add-product-form mb-5 mt-1">
+                                        <input type="text" placeholder=" " class="add-product-control" id="product-name" asp-for="Name">
+                                        <label for="product-name" class="add-product-label required text-capitalize" asp-for="Name">User Name</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="add-product-form mb-5">
+                                        <input type="text" placeholder=" " class="add-product-control" id="product-category" asp-for="Email">
+                                        <label for="product-category" class="add-product-label required text-capitalize" asp-for="Email">User Email</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <textarea id="text-area" placeholder="write your message" class="text-capitalize" asp-for="Content"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="add-product-btn mt-5">Send</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 mt-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-5">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="card-icon d-flex align-items-center justify-content-center me-5"><i class="fa-solid fa-location-dot"></i></div>
+                                <div class="card-content d-flex flex-column">
+                                    <h3 class="text-uppercase mb-0">address</h3>
+                                    <span class="text-capitalize text-black-50">25 street, toson-alexandria</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card mb-5">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="card-icon d-flex align-items-center justify-content-center me-5"><i class="fa-solid fa-envelope-circle-check"></i></div>
+                                <div class="card-content d-flex flex-column">
+                                    <h3 class="text-uppercase mb-0">mail us</h3>
+                                    <span class="text-capitalize text-black-50">goalstore@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="card mb-5">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="card-icon d-flex align-items-center justify-content-center me-5"><i class="fa-solid fa-phone"></i></div>
+                                <div class="card-content d-flex flex-column">
+                                    <h3 class="text-uppercase mb-0">telephone</h3>
+                                    <span class="text-capitalize text-black-50">(+02) 01286266142</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end contact -->
+
+
+
+<!-- start overview contact -->
+<div class="overview contact py-5 my-5">
+    <div class="container py-5 px-5">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <div class="col-12 col-6">
+                        <h1 class="text-uppercase mb-5 text-center text-md-start">overview</h1>
+                        <form action="" class="add product mb-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="add-product-form mb-5 mt-1">
+                                        <input type="text" placeholder=" " class="add-product-control" id="product-name">
+                                        <label for="product-name" class="add-product-label required text-capitalize">user name</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="add-product-form mb-5">
+                                        <input type="text" placeholder=" " class="add-product-control" id="product-category">
+                                        <label for="product-category" class="add-product-label required text-capitalize">user email</label>
+                                    </div>
+                                </div>
+                                @* <div class="col-12">
+                                    <div class="add-product-form image mb-5">
+                                        <input type="file" placeholder=" " class="add-product-control image" id="product-category">
+                                        <label for="product-category" class="add-product-label required text-capitalize">user image</label>
+                                    </div>
+                                </div> *@
+                                <div class="col-12">
+                                    <textarea name="" id="text-area" placeholder="leave a message for us" class="text-capitalize"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="add-product-btn mt-5">send</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 mt-md-4">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="/img/ball.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end overview contact -->

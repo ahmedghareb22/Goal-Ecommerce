@@ -1,0 +1,51 @@
+﻿@model List<WishList>
+@{
+    ViewData["Title"] = "WishList";
+}
+
+<!------------------------- start wishlist -->
+<div class="wishlist py-5">
+    <div class="container">
+        <h1 class="text-uppercase text-center pt-3 pb-5">Wishlist</h1>
+        <div class="wishlist-content">
+            <div class="wishlist-content-header p-2">
+                <h4 class="text-center text-white wish-header m-0 fs-2 text-uppercase">Image</h4>
+                <h4 class="text-center text-white wish-header m-0 fs-2 text-uppercase">Title</h4>
+                <h4 class="text-center text-white wish-header m-0 fs-2 text-uppercase">Price</h4>
+                <h4 class="text-center text-white wish-header m-0 fs-2 text-uppercase"></h4>
+            </div>
+
+            <div class="wishlist-content-items" id="wishlist-item">
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        @foreach (var item1 in item.productsWish)
+                        {
+                            <div class="item">
+                                <div class="image ">
+                                <img src="/img/@item1.Product.Imgs.ToList().First().Name" alt="" class="img-fluid">
+                            </div>
+                            <h3 class="title text-center">@item1.Product.Name</h3>
+                            <h3 class="price text-center">@item1.Product.Price</h3>
+                            <div class="btns d-flex flex-column flex-lg-row justify-content-center">
+                                <form method="post">
+                                <button class="text-white me-3" onclick="AddToCart(@item1.Product.Id)">Add To Cart</button>
+                                <button class="text-white me-3 mt-2 mt-lg-0" asp-action="Delete" asp-controller="WishList" asp-route-id="@item1.Product.Id">Delete</button></form>
+                            </div>
+                        </div>
+                    }
+
+                  } 
+                }
+                <!-- add items here -->
+                   
+                        
+                 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

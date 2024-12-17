@@ -1,0 +1,33 @@
+﻿@model List<Contact>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="dashboard dash-messages">
+    <div class="row title mt-3 mb-5 ms-2">
+        <div class="col-12 d-flex justify-content-between">
+            <h2 class="title text-uppercase">users messages</h2>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <div class="col-6 col-xl-4">
+                @foreach (var item in Model)
+                {
+                    <div class="card p-3">
+                        <div class="card-title pb-4">
+                            <h3 class="user-name text-capitalize m-0">@item.Name</h3>
+                            <span class="email text-black-50">@item.Email</span>
+                        </div>
+                        <p class="card-content text-capitalize">@item.Content</p>
+                        <div class="card-date text-capitalize">@item.CreateAt.Value</div>
+                        <div class="card-icon"><a class="fa-regular fa-trash-can" asp-controller="Admin" asp-action="DeleteContact" asp-route-id="@item.Id"></a></div>
+                    </div>
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>

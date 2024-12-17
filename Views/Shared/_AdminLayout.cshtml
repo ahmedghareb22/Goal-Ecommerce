@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal</title>
+    <!-- link for title icon -->
+    <link rel="icon" href="/img/title.jpg" type="image/jpg">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/css/all.min.css">
+    <!-- normalization   -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- google font -->
+    <!-- open Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <!-- metal mania -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!-- css file -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!---------------------------- start admin dashboard -->
+    <!-- start side bar -->
+    <aside class="dashboard sidebar resize">
+        <ul>
+            <li class="sidebar-link">
+                <a>
+                    <span class="icon"><i class="fa-solid fa-basketball"></i></span>
+                    <span class="title">goal</span>
+                </a>
+            </li>
+            <li class="@ViewBag.dashboard">
+                <a asp-action="AdminDashBord" asp-controller="Admin">
+                    <span class="icon"><i class="fa-solid fa-chart-simple"></i></span>
+                    <span class="title">dashboard</span>
+                </a>
+            </li>
+            <li class="@ViewBag.customers">
+                <a asp-controller="Admin" asp-action="CustomerDashBord">
+                    <span class="icon"><i class="fa-solid fa-users"></i></span>
+                    <span class="title">customers</span>
+                </a>
+            </li>
+            <li class="@ViewBag.Products">
+                <a asp-action="product" asp-controller="Admin">
+                    <span class="icon"><i class="fa-solid fa-store"></i></span>
+                    <span class="title">products</span>
+                </a>
+            </li>
+            <li class="@ViewBag.messages">
+                <a asp-action="Contact" asp-controller="Admin">
+                    <span class="icon"><i class="fa-solid fa-comments"></i></span>
+                    <span class="title">messages</span>
+                </a>
+            </li>
+            <li class="@ViewBag.saleslist">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-list-check"></i></span>
+                    <span class="title">sales list</span>
+                </a>
+            </li>
+            <li class="@ViewBag.newadmin">
+                <a href="#">
+                    <span class="icon"><i class="fa-solid fa-plus"></i></span>
+                    <span class="title">new admin</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+    <!-- end side bar -->
+    <!-- start content -->
+    <div class="dashboard content">
+        <!-------------------------------- start navbar -->
+        <nav class="content-navbar">
+            <span class="toggle-icon" id="toggle-icon"><i class="fa-solid fa-bars"></i></span>
+            <form action="#" id="dash-search-form">
+                <div class="search-form">
+                    <input type="search" name="search" placeholder="Search...">
+                    <button type="submit" class="search-btn" id="dash-search-btn"><i class="fa-solid fa-search" id="dash-search-icon"></i></button>
+                </div>
+            </form> 
+            <a href="#" class="notification">
+                <i class="fa-solid fa-bell"></i>
+                <span class="notification-num">5</span>
+            </a>
+            <a href="#" class="profile">
+                <img src="/img/@User.FindFirst("UserPhoto")?.Value" alt="img">
+            </a>
+        </nav>
+        @RenderBody()
+
+    </div>
+    <script src="/js/admin-dashboard.js"></script>
+        <!-- <script src="js/main.js"></script>
+        <script src="js/template.js"></script>
+        <script src="js/shop.js"></script>
+        <script src="js/login.js"></script>
+        <script src="js/single-product.js"></script> -->
+        <script src="/js/swiper-bundle.min.js"></script>
+        <script src="/js/all.min.js"></script>
+        <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

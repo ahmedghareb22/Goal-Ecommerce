@@ -1,0 +1,71 @@
+﻿@model ProductViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="dashboard dash-products">
+    <div class="container-fluid">
+        <div class="row title mt-3 mb-5 ms-2">
+            <div class="col-12 d-flex justify-content-between">
+                <h2 class="title text-capitalize">products</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="card">
+                    <div class="card-head  position-relative mx-3 mx-md-5">
+                        <div class="card-head-content text-center pt-4 pb-3">
+                            <h5 class="text-uppercase fw-bold text-light">add new product</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <form method="post" class="add product" enctype="multipart/form-data" asp-action="AddProduct" asp-controller="Admin">
+                                <div class="row">
+                                    <input value="@Model.product.Id" hidden />
+                                    <div class="col-12 col-md-6">
+                                        <div class="add-product-form mt-3 mt-md-5">
+                                            <input type="text" placeholder=" " class="add-product-control" id="product-name" asp-for="product.Name" required>
+                                            <label for="product-name" class="add-product-label required text-capitalize">product title</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="add-product-form mt-3 mt-md-5">
+                                            <input type="text" placeholder=" " class="add-product-control" id="product-category" asp-for="product.Category.Name" required>
+                                            <label for="product-category" class="add-product-label required text-capitalize">product category</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="add-product-form mt-3 mt-md-5">
+                                            <input type="text" placeholder=" " class="add-product-control" id="card-number" asp-for="product.Price" required>
+                                            <label for="card-number" class="add-product-label required text-capitalize">product salary</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div class="add-product-form file mt-3 mt-md-5">
+                                            <input type="file" placeholder=" " class="add-product-control file" id="product-image" multiple asp-for="product.Photo" required>
+                                            <label for="product-image" class="add-product-label file required text-capitalize">product image</label>
+                                            <label id="file-name"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6">
+                                        <div class="add-product-form mt-3 mt-md-5">
+                                            <input type="text" placeholder=" " class="add-product-control" id="product-count" asp-for="product.Stock.Quantity" required>
+                                            <label for="product-count" class="add-product-label text-capitalize">product count</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button type="submit" class="add-product-btn mt-5">add product</button>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <partial name="_product" model="@Model.Products"/>
+    </div>
+</div>  

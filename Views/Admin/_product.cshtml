@@ -1,0 +1,46 @@
+﻿@model List<Product>
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-head  position-relative mx-3 mx-md-5">
+                <div class="card-head-content text-center pt-4 pb-3">
+                    <h5 class="text-uppercase fw-bold text-light">all products</h5>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table">
+                    <table class="w-100">
+                        <thead>
+                            <tr>
+                                <td class="fw-bold text-black-50 text-uppercase">product</td>
+                                <td class="fw-bold text-black-50 text-uppercase text-center">price</td>
+                                <td class="fw-bold text-black-50 text-uppercase text-center">count</td>
+                                <td class="fw-bold text-black-50 text-uppercase text-center">category</td>
+                                <td class="fw-bold text-black-50 text-uppercase text-center">update</td>
+                                <td class="fw-bold text-black-50 text-uppercase text-center">delete</td>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            @foreach (var item in Model)
+                            {
+                                <tr class="">
+                                    <td class="">
+                                        <div class="product d-flex align-items-center">
+                                            <span class="image me-2"><img src="/img/@item.Imgs.ToList()[0].Name" alt="" class="img-fluid"></span>
+                                            <span class="title text-capitalize">@item.Name</span>
+                                        </div>
+                                    </td>
+                                    <td class="price text-center">$@item.Price</td>
+                                    <td class="count text-center">@item.Stock.Quantity</td>
+                                    <td class="category text-center">@item.Category.Name</td>
+                                    <td class="udpate text-center text-capitalize"><a asp-action="Update" asp-controller="Admin" asp-route-id="@item.Id" class="btn update online p-3 badge bg-success">update</a></td>
+                                    <td class="udpate text-center text-capitalize"><a asp-action="Delete" asp-controller="Admin" asp-route-id="@item.Id" class="btn delete online p-3 badge bg-danger">delete</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

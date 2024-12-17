@@ -1,0 +1,50 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Single";
+}
+<div class="sproduct my-5 pb-5">
+    <div class="container mb-5">
+        <div class="row single">
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="image w-100 mb-2">
+                    <img src="/img/@Model.Imgs.ToList()[0].Name" alt="" class="img-fluid product-main-img" id="main-img">
+                </div>
+                <div class="small-img-container d-flex align-items-center justify-content-between mb-5">
+                        @foreach (var img in Model.Imgs)
+                        {
+                            <div class="small-img-col">
+                                <img src="/img/@img.Name" alt="" class="small-img img-fluid w-100">
+                            </div>
+                        }
+                    
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-12 ms-lg-4 mt-4 mt-lg-0">
+                <h3 class="product-name mb-5">@Model.Name</h3>
+                <h2 class="product-price">$@Model.Price</h2>
+                <div class="size">
+                    <select class="my-4">
+                        <option>Select Size</option>
+                        <option>XL</option>
+                        <option>XXL</option>
+                        <option>Small</option>
+                        <option>Medium</option>
+                        <option>Large</option>
+                    </select>
+                </div>
+                <button class="buy-btn mb-5 mt-5" onclick="AddToCart(@Model.Id)">Add To Cart</button>
+                <h4 class="mt-4 mb-4">Product Details</h4>
+                <span class="product-information d-inline-block mb-5">@Model.Descreption</span>
+            </div>
+        </div>
+    </div>
+    <div class="twelve">
+        <h1 class="text-center position-relative m-0">More products</h1>
+    </div>
+</div>
+     <partial name="_SingleList" model="@Model.Category.Products"/>
+
+<script src="/js/swiper-bundle.min.js"></script>
+
+<script src="/js/single-product.js"></script>
+

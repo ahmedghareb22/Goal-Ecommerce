@@ -1,0 +1,157 @@
+﻿@model RegisterViewModel
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOAL</title>
+    <!-- link for title icon -->
+    <link rel="icon" href="/img/title.jpg" type="image/jpg">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="/css/all.min.css">
+    <!-- normalization   -->
+    <link rel="stylesheet" href="/css/normalize.css">
+    <!-- bootstrap file -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- CSS file -->
+    <link rel="stylesheet" href="/css/style2.css">
+</head>
+
+
+<body>
+    <section class="login-register">
+
+        <!-- register box-->
+        <div class="register-box row m-0">
+            <!-- register  -->
+            <div class="register active col-12 col-md-6 ps-3 pe-3 pt-2 d-flex flex-column justify-content-center align-items-center">
+                <img src="/img/newlogo.png" alt="logo" class="logo img-fluid ">
+                <h2 class="text-capitalize">register</h2>
+                <!-- register form -->
+                <form method="post" asp-action="SaveRegister" enctype="multipart/form-data">
+                    @* <div asp-validation-summary="All" class="text-danger"></div> *@
+                    <div class="row">
+                        <div class="mb-2 col-6">
+                            <!-- first name -->
+                            <input type="text" id="fname" class="text-capitalize w-100" placeholder="User Name" asp-for="UserName">
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-6">
+                            <!-- last name -->
+                            <input type="text" id="lname" class="text-capitalize w-100" placeholder="Full Name" asp-for="FullName">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-2">
+                            <!-- email -->
+                            <input type="email" id="email" class="text-capitalize w-100" placeholder="email" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-2 col-6">
+                            <!-- password -->
+                            <input type="password" id="password" class="text-capitalize w-100" placeholder="password" asp-for="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2 col-6">
+                            <!-- confirm password -->
+                            <input type="password" id="confirm-password" class="text-capitalize w-100" placeholder="confirm password" asp-for="PasswordConfirmation">
+                            <span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-2">
+                            <!-- phone -->
+                            <input type="tel" id="phone-num" class="text-capitalize w-100" placeholder="phone number" asp-for="Phone">
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-6">
+                            <!-- city -->
+                            <input type="text" id="city" class="text-capitalize w-100" placeholder="city" asp-for="city">
+                            <span asp-validation-for="city" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <!-- address -->
+                            <input type="text" id="address" class="text-capitalize w-100" placeholder="address" asp-for="Adress">
+                            <span asp-validation-for="Adress" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3">
+                            <!-- image -->
+                            <label for="image" class="text-capitalize ms-1" asp-for="Photo">Profile Image</label>
+                            <input type="file" id="image" class="text-capitalize w-100" placeholder="phone number" asp-for="Photo">
+                            <span asp-validation-for="Photo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3">
+                            <!-- birthday -->
+                            <label for="birthday" class="text-capitalize ms-1" asp-for="BirthDate">date of birth</label>
+                            <input type="date" id="birthday" class="text-capitalize w-100" placeholder="phone number" asp-for="BirthDate">
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="mb-3">
+                            <!-- login-btn -->
+                            <button type="submit" class="login-btn btnn w-100 py-2 rounded-2 text-white">sign in</button>
+                        </div>
+                    </div>
+
+                </form>
+                <p class="text-muted">already have an account? <a href="#" id="login-link" class="login-link link text-capitalize" onclick="toggleLogin()">login</a></p>
+            </div>
+            <!-- register image -->
+            <div class="register-image active col-6 d-none d-md-block">
+                <h1 class="text-uppercase text-white mt-3 text-end">goal</h1>
+            </div>
+
+        </div>
+        
+        <partial name="Login"/>
+
+
+    </section>
+
+
+
+
+    <script src="/js/all.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/login-register.js"></script>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+
+
+    @{
+
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+</body>
+</html>
+
+
+
+
+
+
+
+

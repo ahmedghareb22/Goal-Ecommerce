@@ -1,0 +1,11 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using Microsoft.AspNetCore.Mvc;
+global using Goal.Models;
+global using Microsoft.EntityFrameworkCore;
+global using Goal.Data;
+global using Goal.IRepository;
+global using Goal.Repository;
+global using Goal.ViewModel;
+global using System.Security.Claims;
+global using Microsoft.AspNetCore.Authorization;

@@ -1,0 +1,80 @@
+﻿
+<nav nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center justify-content-center" href="#"><img src="/img/logo-2.png" alt="logo" class="img-fluid"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main" aria-controls="main" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse align-self-end" id="main">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                <li class="nav-item active">
+                    <i class="one pe-1 d-xl-none fa-solid fa-house"></i>
+                    <a class="nav-link  pe-lg-3 d-inline-block active" aria-current="page" asp-action="Index" asp-controller="Home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <i class="one pe-1 d-xl-none fa-solid fa-store"></i>
+                    <a class="nav-link pe-lg-3 d-inline-block" asp-action="Index" asp-controller="Shop">Shop</a>
+                </li>
+
+                <li class="nav-item">
+                    <i class="one pe-1 d-xl-none fa-solid fa-star"></i>
+                    <a class="nav-link pe-lg-3 d-inline-block" href="#">Special</a>
+                </li>
+                <li class="nav-item">
+                    <i class="one pe-1 d-xl-none fa-solid fa-envelope"></i>
+                    <a class="nav-link pe-lg-3 d-inline-block" asp-action="Contact" asp-controller="Contact">Contact</a>
+                </li>
+               
+            </ul>
+            <div class="icons">
+                @if (User.Identity.IsAuthenticated == false)
+                {
+                    <a type="button" class="ms-lg-3 m-0 p-0 p-lg-1" id="nav-user-icon" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-user-plus"></i></a>
+                }
+                <a type="button" class="ms-3" asp-action="WishList" asp-controller="WishList" ><i class="fa-solid fa-heart" onclick="GetWishList()"></i></a>
+                <a type="button" class="ms-3 position-relative" type="button" id="close-cart" onclick="GetCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge bg-danger rounded-pill position-absolute" id="counter"></span>
+                </a>
+            </div>
+        </div>
+
+        <!-- user img -->
+        @if (User.Identity.IsAuthenticated==true)
+        {
+            <div class="user-menu-wrap ms-md-3 d-none d-lg-block">
+                <div class="user-image  ms-md-5 user-nav-icon" id="user-nav-icon">
+                    <img src="/img/@User.FindFirst("UserPhoto")?.Value" alt="" class="img-fluid">
+            </div>
+            <div class="sub-menu-wrap position-absolute" id="sub-menu-wrap">
+                <div class="sub-menu p-3">
+                    <div class="user-info d-flex align-items-center mt-3">
+                        <img src="/img/@User.FindFirst("UserPhoto")?.Value" alt="" class="img-fluid me-5">
+                        <h4 class="text-uppercase">@User.Identity.Name</h4>
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link d-flex align-items-center text-black py-4">
+                        <div class="icon d-flex align-items-center justify-content-center"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <p class="w-100">Edit Profile</p>
+                        <span><i class="fa-solid fa-greater-than"></i></span>
+                    </a>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="sub-menu-link d-flex align-items-center text-black py-4" asp-controller="Admin" asp-action="AdminDashBord">
+                                <div class="icon d-flex align-items-center justify-content-center"><i class="fa-solid fa-table-list"></i></div>
+                                <p class="w-100">Admin Dashboard</p>
+                                <span><i class="fa-solid fa-greater-than"></i></span>
+                            </a>
+                        }
+                        <a class="sub-menu-link d-flex align-items-center text-black py-4" asp-controller="Account" asp-action="SignOut">
+                        <div class="icon d-flex align-items-center justify-content-center"><i class="fa-solid fa-right-from-bracket"></i></div>
+                        <p class="w-100">Logout</p>
+                        <span><i class="fa-solid fa-greater-than"></i></span>
+                    </a>
+
+                </div>
+            </div>
+        </div>}
+    </div>
+</nav>
+

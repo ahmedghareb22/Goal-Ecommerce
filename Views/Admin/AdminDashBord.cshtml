@@ -1,0 +1,177 @@
+﻿@model AdminDashboardViewModel
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="dashboard dash-content">
+    <div class="container-fluid">
+
+        <div class="row title mt-3 mb-4 ms-2">
+            <div class="col-12 d-flex justify-content-between">
+                <h2 class="title">Dashboard</h2>
+                <a href="#" class="download d-flex align-items-center text-light p-2 me-2 rounded">
+                    <span class="me-3 fw-bold">Download PDF</span>
+                    <i class="fa-solid fa-download"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card one position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">today sales</div>
+                            <h4 class="mb-0 fs-3">$@Model.Today</h4>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="card-foot p-3">
+                        <p class="mb-0 text-capitalize">
+                            <span class="text-sm fw-bold">@(Model.LastDay)%</span>
+                            than last day
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card two position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-chart-column"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">total sales</div>
+                            <h4 class="mb-0 fs-3">$@Model.ThisMonth</h4>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="card-foot p-3">
+                        <p class="mb-0 text-capitalize">
+                            <span class="text-sm fw-bold">@(Model.LastMonth)%</span>
+                            than last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card three position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-sack-dollar"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">total revenue</div>
+                            <h4 class="mb-0 fs-3">$@Model.Total</h4>
+                        </div>
+                    </div>
+                    <div class="card-foot p-4 pt-2">
+                        
+                            
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card four position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-users"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">visitors</div>
+                            <h4 class="mb-0 fs-3">20K</h4>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="card-foot p-3">
+                        <p class="mb-0 text-capitalize">
+                            <span class="text-sm fw-bold">+30%</span>
+                            than last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card five position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-user"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">new users</div>
+                            <h4 class="mb-0 fs-3">@Model.TotalUser</h4>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="card-foot p-3">
+                        <p class="mb-0 text-capitalize">
+                            <span class="text-sm fw-bold">@(Model.NewUserLastMonth)%</span>
+                            than last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-4">
+                <div class="card six position-relative">
+                    <div class="card-head p-4 pt-2">
+                        <div class="icon position-absolute d-flex align-items-center justify-content-center text-white"><i class="fa-solid fa-clipboard-list"></i></div>
+                        <div class="text-end pt-1">
+                            <div class="card-title mb-0 text-capitalize">total orders</div>
+                            <h4 class="mb-0 fs-3">@Model.NumOrder</h4>
+                        </div>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="card-foot p-3">
+                        <p class="mb-0 text-capitalize">
+                            <span class="text-sm fw-bold">@(Model.NumOrderLastMonth)%</span>
+                            than last month
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-12 orders">
+                <div class="card">
+                    <div class="card-head recent-orders position-relative mx-3 mx-md-5">
+                        <div class="card-head-content text-center pt-4 pb-3">
+                            <h5 class="text-uppercase fw-bold text-light">recent orders</h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table">
+                            <table class="w-100">
+                                <thead>
+                                    <tr>
+                                        <td class="fw-bold text-black-50 text-uppercase">name</td>
+                                        <td class="fw-bold text-black-50 text-uppercase text-center">price</td>
+                                        <td class="fw-bold text-black-50 text-uppercase text-center">payment</td>
+                                        <!-- <td class="fw-bold text-black-50 text-uppercase text-end">status</td> -->
+                                    </tr>
+                                </thead>
+                                <tbody class="">
+                                    @if (Model.order != null)
+                                    {
+                                        @foreach (var item in Model.order)
+                                        {
+                                            <tr class="">
+                                                <td class="text-capitalize">@item.Customer.FullName</td>
+                                                <td class="text-center">$@item.Total</td>
+                                                @if (item.IsCash)
+                                                {
+                                                    <td class="text-center text-capitalize"><span class="pay p-3 px-4 badge">cash</span></td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="text-center text-capitalize"><span class="pay visa p-3 px-4 badge">visa</span></td>
+                                                }
+                                            </tr>
+                                        }
+                                    }
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="shop">
+    <aside class="side mt-5">
+        <div class="search position-relative w-100 d-flex rounded-pill">
+            <input type="text" class="p-2 rounded-pill w-100" name="search" id="search-id" placeholder="Search Products...">
+            <button class="button position-absolute"><i class="fa-solid fa-search search-icon"></i></button>
+        </div>
+        <div class="side-body mt-5">
+            <div class="filter">
+                <h3>Filter by Price</h3>
+                <div class="range-container mb-5 mt-4">
+                    <input type="range" name="range" id="from-slider" class="from-slider" value="0">
+                    <input type="range" name="range" id="to-slider" class="to-slider" min="0" max="1000" value="300">
+                </div>
+                <div class="filter-footer pt-4 d-flex align-items-center justify-content-between">
+                    <button class="btn rounded-pill py-2 px-4">Filter</button>
+                    <span id="filter-value">Price: <span class="dollar">$</span>0 - <span class="dollar">$</span>200</span>
+                </div>
+                <div class="side-category mt-4">
+                    <h4 class="mb-3">Product Categories</h4>
+                    <div id="shop-categoy-list">
+                        <p class="text-black-50 d-flex align-items-center justify-content-between">Sportswear <span class="d-inline-block">(8)</span></p>
+                        <p class="text-black-50 d-flex align-items-center justify-content-between">Shoes <span class="d-inline-block">(5)</span></p>
+                        <p class="text-black-50 d-flex align-items-center justify-content-between">Bags <span class="d-inline-block">(10)</span></p>
+                        <p class="text-black-50 d-flex align-items-center justify-content-between">Accessories  <span class="d-inline-block">(2)</span></p>
+                    </div>
+                </div>
+                <div class="side-product-brands mt-3 mb-5">
+                    <h4 class="mb-4">Product Brands</h4>
+                    <div class="brands-button">
+                        <button type="button" class="brand-btn mb-2 me-1" value="2">ADIDAS</button>
+                        <button type="button" class="brand-btn mb-2 me-1" value="3">PUMA</button>
+                        <button type="button" class="brand-btn mb-2 me-1" value="4">NIKE</button>
+                        <button type="button" class="brand-btn mb-2 me-1" value="5">REEBOK</button>
+                        <button type="button" class="brand-btn mb-2 me-1" value="6">NB</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="top-search-bar search d-non">
+        <div class="search position-relative w-100 d-flex rounded-pill">
+            <input type="text" class="p-2 rounded-pill w-100" name="search" id="search-id" placeholder="Search Products...">
+            <button class="button position-absolute"><i class="fa-solid fa-search search-icon"></i></button>
+        </div>
+    </div>
+    <div class="shop-body mt-5">
+        <div class="sort d-flex align-items-center w-100 justify-content-end pe-4">
+            <div class="select">
+                <select name="sort" id="sort">
+                    <option value="default-sorting">Default Sorting</option>
+                    <option value="sort-by-price-Low">Sort By Price: Low To High</option>
+                    <option value="sort-by-price-high">Sort By Price: High To Low</option>
+                </select>
+            </div>
+        </div>
+        <div class="product-list">
+            @foreach (var item in Model)
+            {
+                <div class="item  position-relative">
+                    <div class="image">
+                    <a asp-route-Id="@item.Id" asp-action="Single" asp-controller="Shop">
+                    @if (item.Imgs.Count != 0)
+                    {
+                            <img src="/img/@(item.Imgs.First().Name)" alt="" class="img-fluid">
+                    }
+                    else
+                    {
+                            <img src="/img/logo-3.png" alt="" class="img-fluid">
+                    }
+
+                    </a>
+                        <a href="" class="wishlist-btn text-light position-absolute p-2 top-0 end-0" onclick="AddToWishList(@item.Id)"><i class="pe-lg-4 pe-2 fa-solid fa-heart d-block fs-5"></i></a>
+                    </div>
+            
+                <div class="item-body">
+                    <div class="title text-center">
+                        <h5>@item.Name</h5>
+                    </div>
+                    <div class="price text-center">
+                        <span>$</span>
+                        <span class="price">@item.Price</span>
+                    </div>
+                    <div class="button d-flex align-items-center justify-content-center mt-3">
+                        <div class="overlay"></div>
+                            <button onclick="AddToCart(@item.Id)">Add To Cart</button>
+                    </div>
+                </div>
+                </div>
+                }
+            
+            
+        </div>
+
+
+        <div class="pagination mb-5 mt-4 d-flex align-items-center justify-content-md-start justify-content-center">
+            <a href="#">&laquo;</a>
+            <a href="#">1</a>
+            <a class="active" href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">&raquo;</a>
+        </div>
+    </div>
+</div>
+<!-------------------------------------- end shop -->
+@section Scripts{
+    <script>
+        function AddToWishList(ProductId) {
+            $.ajax({
+                url: "/WishList/AddToWish/" + ProductId,
+                success: function (result) {
+                    
+                }
+            });
+        }
+    </script>
+}
